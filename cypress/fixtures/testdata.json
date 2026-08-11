@@ -1,0 +1,10 @@
+{
+  "address": {
+    "fullname": "Test Kullanici",
+    "email": "testuser@test.com",
+    "phone": "5554443322",
+    "province": "ANKARA",
+    "district": "Çankaya",
+    "address": "Test Mah. Test Sok. No:1 Daire:2"
+  }
+}
