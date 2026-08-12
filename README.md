@@ -25,6 +25,8 @@ The primary goal of this project is to ensure the stability, reliability, and se
 * **CI/CD Integration:** GitHub Actions
 * **Reporting:** Mochawesome (Comprehensive HTML reports)
 
+You can view the live Mochawesome HTML test execution report via the link below:
+👉 [View Live Test Report](https://<cileruzal>.github.io/<kitapsepeti_automation_project>/cypress/reports/index_001.html)
 ---
 
 ## 📁 Project Structure
