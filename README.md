@@ -26,7 +26,7 @@ The primary goal of this project is to ensure the stability, reliability, and se
 * **Reporting:** Mochawesome (Comprehensive HTML reports)
 
 You can view the live Mochawesome HTML test execution report via the link below:
-👉 [Mochawesome Report](https://github.com/cileruzal/kitapsepeti_automation_project>/cypress/reports/index.html)
+👉 [Mochawesome Report](https://github.com/cileruzal/kitapsepeti_automation_project>/cypress/reports/html/index.html)
 ---
 
 ## 📁 Project Structure
