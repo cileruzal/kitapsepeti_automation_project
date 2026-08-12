@@ -14,7 +14,7 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+//import './commands'
 Cypress.on('uncaught:exception', (err, runnable) => {
   // window.google_trackConversion hatasını yoksay
   if (err.message.includes('google_trackConversion')) {

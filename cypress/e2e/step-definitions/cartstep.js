@@ -2,19 +2,23 @@ import {Given, When, Then} from "@badeball/cypress-cucumber-preprocessor";
 import loginPage from "../../pages/LoginPage";
 import productPage from "../../pages/ProductPage";
 import cartPage from "../../pages/CartPage";
-
+import SearchPage from "../../pages/SearchPage";
 
 // ==========================================
 // BACKGROUND STEPS
 // ==========================================
 
-Given("I am on the cart page {string}", (pageName) => {
-    cartPage.navigateToCart();
-}); 
+Given("I clear the cart or start with an empty cart", () => {
+    cartPage.clearAllCart();
+});
 
 //==========================================
 // TC14 STEP DEFINITIONS
 // ==========================================
+
+When("I am on the cart page {string}", (pageName) => {
+    cartPage.navigateToCart();
+}); 
 
 When("I click on the cart icon at the top right corner of the site", () => {
     cartPage.clickGoToCartButton();
@@ -22,6 +26,10 @@ When("I click on the cart icon at the top right corner of the site", () => {
 
 Then("the {string} right navigation drawer should open", () => {
     cartPage.openCart();
+});
+
+When("I click the {string} button on the navigation drawer", () => {
+    cartPage.clickPopupGoToCartButton();
 });
 
 Then("I should be redirected to the cart page {string} successfully", (pageName) => {

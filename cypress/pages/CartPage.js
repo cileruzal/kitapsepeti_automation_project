@@ -17,9 +17,9 @@ class CartPage {
   _getCartTitle() { return cy.get('#header-cart-panel-128 .drawer-title span'); }
   _getProductName(){ return cy.get('.cart-item-title, .cart-item-name, .product-title, .cart-item a')}
   _getUnitPrice() {return cy.get('.cart-item-price-wrapper')}
-  _getCartTotal() { return cy.get('.header-cart-price-line:contains("Sepet Toplamı") .col-6.text-right')}
-  _getShippingFee() { return cy.get('.header-cart-price-line:contains("Kargo Ücreti") .col-6.text-right')}
-  _getGeneralTotal() {return cy.get('.header-cart-price-line:contains("Genel Toplam") .col-6.text-right')}
+  _getCartTotal() {return cy.get('#cart-price-container .col-6.pl-0.text-right').eq(0);}
+  _getShippingFee() {return cy.get('#cart-price-container .col-6.pl-0.text-right').eq(1);}
+  _getGeneralTotal() {return cy.get('#cart-price-container .col-6.pl-0.text-right').eq(2);}
   _getProductCount() { return cy.get('input[id^="qty"]'); }
   _getTotalPrice() { return cy.get('.cart-item .price-sell').last(); }
   _getAddToCartButton() { return cy.get('.product-buttons-item.add-to-cart-btn'); }
@@ -39,6 +39,12 @@ class CartPage {
   //---------------------------------------------------------
   // Actions & Verifications 
   //---------------------------------------------------------
+
+  //Background
+
+  clearAllCart() {
+    this._getClearAllCart().click()
+  }
 
   //TC14 assertions
   navigateToCart() {
@@ -74,6 +80,7 @@ class CartPage {
 
     goToCartPage() {
     this._getCartButton().click();
+    this._getPopupGoToCartButton().click();
   }
 
 displayCartDetails() {
@@ -94,7 +101,7 @@ verifyGeneralTotal() {
 
   // TC16 assertions
   // +. increase product quantity and verify updated total price
-  increaseProductQuantity(button) {
+increaseProductQuantity(button) {
     this._getPlusButton().click();
   }
 
@@ -105,7 +112,7 @@ verifyGeneralTotal() {
 
   //TC17 assertions
 
-  clearCartViaButton() {
+clearCartViaButton() {
     this._getDeleteProductButton().first().click();  
     // Eğer sepeti temizle butonuna basınca pop-up çıkıyorsa onay butonuna bas:
     this._getDeleteModalWindow().should('be.visible');
@@ -134,7 +141,7 @@ verifyEmptyCartState() {
 
 
 // "Satın Al" butonunun görünür ve tıklanabilir olduğunu doğrulama 
-  verifyCheckoutButtonIsPresentAndClickable() {
+verifyCheckoutButtonIsPresentAndClickable() {
     this._getCheckoutButton()
       .should('be.visible')
       .and('not.be.disabled');
@@ -144,8 +151,8 @@ verifyEmptyCartState() {
 
 
   // Pop-up'taki "Sepete Git" butonuna tıklama
-  clickPopupGoToCartButton() {
-cy.get('body').then(($body) => {
+clickPopupGoToCartButton() {
+  cy.get('body').then(($body) => {
       // Eğer buton ekranda görünüyorsa tıkla, görünmüyorsa doğrudan sepet sayfasına git veya bekle
       if ($body.find('#go-cart-btn').length > 0) {
         this._getPopupGoToCartButton().should('be.visible').click({ force: true});

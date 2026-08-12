@@ -17,7 +17,7 @@ class ProductPage {
     _getCartIconCount() { return cy.get('.cart-soft-count, .cart-count, .badge-count'); }
     _getAddToCartSuccessMessage() { return cy.get('[id^="popup-cart"], .fancybox-content, .modal-body, .success-popup'); }
     _getCloseModalButton() { return cy.get('[id^="t-modal-close"], .fancybox-close, .modal-close'); }
-    _getGoToCartButton() { return cy.get('#cart-popup-go-cart, a.go-to-cart, .btn-go-cart'); }
+    _getGoToCartButton() { return cy.get('#cart-popup-go-cart, a.go-to-cart, .btn-go-cart, .cart-popup-continue-shopping');}
     
     // ---------------------------------------------------------
     // Actions & Verifications 
@@ -45,18 +45,11 @@ class ProductPage {
     }
 
     clickAddToCartButton() {
-        this._getAddToCartButton()
-            .first()
-            .should('be.visible')
-            .scrollIntoView()
-            .click({ force: true });
+        this._getAddToCartButton().first().should('be.visible').scrollIntoView().click({ force: true });
     }
 
     verifySuccessfulAddToCartMessage() {
-        this._getAddToCartSuccessMessage()
-            .first()
-            .should('be.visible')
-            .and('contain', 'Sepet');
+        this._getAddToCartSuccessMessage().first().should('be.visible').and('contain', 'Sepet');
     }
 
     closeAddToCartModal() {
@@ -72,10 +65,7 @@ class ProductPage {
     }
 
     clickGoToCartButton() {
-        this._getGoToCartButton()
-            .first()
-            .should('be.visible')
-            .click({ force: true });
+        this._getGoToCartButton().first().should('be.visible').click({ force: true });
     }
 }
 

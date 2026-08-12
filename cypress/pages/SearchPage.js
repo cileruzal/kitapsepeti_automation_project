@@ -13,7 +13,7 @@ class SearchPage {
     // Genel ürün kartları (Sayfanın herhangi bir yerindeki kartlar)
     _getProductCards() { return cy.get('.product-detail-card, .product-item'); } 
     
-    // KRİTİK DÜZELTME: Sadece arama sonuç sayfasındaki ürünleri listeleyen ana alan (footer/çok satanlar karışmasın diye)
+    // Sadece arama sonuç sayfasındaki ürünleri listeleyen ana alan (footer/çok satanlar karışmasın diye)
     _getSearchResultCards() { return cy.get('.search-page-products, .product-list, .row').find('.product-detail-card, .product-item, .col-md-3'); }
 
     _getSortingDropdown() { return cy.get('#sort'); } // Sıralama menüsü
@@ -29,22 +29,7 @@ class SearchPage {
     // Actions & Verifications 
     // ---------------------------------------------------------
 
-    // İlk açılışta çıkan çerez ve bildirim pop-up'larını yönetir
-    handleInitialPopups() {
-        cy.get('body').then(($body) => {
-            if ($body.find('.cc-nb-okagree').length > 0) {
-                cy.get('.cc-nb-okagree').click({ force: true });
-                cy.get('.cc-window.cc-banner').should('not.exist'); 
-            }
-        });
-
-        cy.get('body', { timeout: 7000 }).then(($body) => {
-            if ($body.find('#notification-popup').length > 0) {
-                cy.get('[id^="t-modal-close"] .ti-close').click({ force: true });
-            }
-        });
-    }
-
+    //TC06 Assertions
     // Arama çubuğunun görünür ve aktif olduğunu doğrular
     verifySearchInput() {
         this._getSearchInput().should('be.visible').and('be.enabled').and('have.attr', 'placeholder', 'Aradığınız ürünün adını yazınız.');
@@ -118,6 +103,7 @@ class SearchPage {
             .click({ force: true }); 
     }
     
+    //TC09 Assertions
     // Sıralama menüsünü açar
     openSortingDropdown() {
         this._getSortingDropdown().select('Varsayılan Sıralama', { force: true });
@@ -144,6 +130,7 @@ class SearchPage {
         this._getProductCards().should('be.visible');
     }
 
+    //TC09 Assertions
     // Üst menüden kategoriye tıklar
     clickHeaderCategory() {
         this._getCategoryHeader().click({ force: true });

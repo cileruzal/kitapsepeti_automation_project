@@ -1,16 +1,17 @@
 class LoginPage {
     pageUrls = {
         "homepage": "/" // cypress.config.js içindeki baseUrl'e göre
+
     };
 
     // ---------------------------------------------------------
     // Locators - (Encapsulation) 
     // ---------------------------------------------------------
     _getLoginIcon() { return cy.get('#hm-links > div > div.col-auto.bg-primary.border-round > div > span > a'); } //hover daki email ile giriş iconu
-    _getModal() { return cy.get('#header-member-panel-322 > div.drawer-header > div.drawer-title > span'); } // panelin / modalın locate'i
+    _getModal() { return cy.get('[id*="header-member-panel"] .drawer-title span'); } // panelin / modalın locate'i
     _getEmailInput() { return cy.get('#header-email'); } 
     _getPasswordInput() { return cy.get('#header-password'); }
-    _getLoginButton() { return cy.get('#login-btn-322').contains('Giriş Yap'); }
+    _getLoginButton() { return cy.get('[id*="login-btn"]').contains('Giriş Yap'); }
     _getRegisterButton() { return cy.get('#register-btn-322').contains('Kayıt Ol'); }
     _getRememberMe() { return cy.get('#header-member-panel-322 > div.drawer-body > form > div.w-100.d-flex.flex-wrap.justify-content-between.header-remember > label').should('contain', 'Beni Hatırla'); }
     _getForgetPass() { return cy.get('#header-member-panel-322 > div.drawer-body > form > div.w-100.d-flex.flex-wrap.justify-content-between.header-remember > a').should('contain', 'Şifremi Unuttum'); }
@@ -52,6 +53,8 @@ class LoginPage {
         this.handleInitialPopups();
     }
 
+    //TC01 Assertions
+
     //openLoginPopup() {
       //  this._getLoginIcon().trigger('mouseover', { force: true });
       //  cy.contains('E-posta ile Giriş', { timeout: 10000 }).should('be.visible').click({ force: true });
@@ -65,30 +68,6 @@ class LoginPage {
         // Modalın açıldığını kesin olarak doğrulayalım
         this._getModal().should('be.visible');
     }
-
-
-    fillCredentials(email, password) {
-        if (email) this._getEmailInput().clear({ force: true }).type(email, { force: true });
-        if (password) this._getPasswordInput().clear({ force: true }).type(password, { force: true });
-    }
-
-    // env üzerinden veriyi çekip doldur
-    fillValidCredentials() {
-        const email = Cypress.env('VALID_EMAIL');
-        const password = Cypress.env('VALID_PASSWORD');
-        this.fillCredentials(email, password);
-    }
-
-    submit() {
-        this._getLoginButton().click({ force: true });
-    }
-
-    clickLink(linkName) {
-        cy.contains(linkName).should('be.visible').click();
-    }
-
-
-    // Verifications
 
     verifyModal() {
         this._getModal().should('be.visible');
@@ -109,12 +88,30 @@ class LoginPage {
         this._getRegisterButton().should('not.be.disabled');
     }
 
-   verifyLoggedIn() {
-        this._getModal({ timeout: 3000 }); // Modal'ın kaybolmasını bekliyoruz, başarılı girişin göstergesi
+    //TC02 Assertions
+
+        // env üzerinden veriyi çekip doldur
+    fillValidCredentials() {
+        const email = Cypress.env('VALID_EMAIL');
+        const password = Cypress.env('VALID_PASSWORD');
+        this.fillCredentials(email, password);
+    }
+
+    clickLoginButton() {
+        this._getLoginButton().click({ force: true });
+    }
+
+    verifyLoggedIn() {
+        this._getModal({ timeout: 3000 }).should('not.exist'); // Modal'ın kaybolmasını bekliyoruz, başarılı girişin göstergesi
         this._getAccountIcon().should('be.visible');
     }
 
-    
+    //TC03 Assertions
+    fillCredentials(email, password) {
+        if (email) this._getEmailInput().clear({ force: true }).type(email, { force: true });
+        if (password) this._getPasswordInput().clear({ force: true }).type(password, { force: true });
+    }
+
     verifyErrorMessage(errorMessage) {
         this._getErrorMessage().then(($body) => {
             if ($body.find('span.popover-item').length > 0) {
@@ -125,11 +122,12 @@ class LoginPage {
         });
     }
 
+    //TC04 Assertions
     verifyLockoutState(lockoutMessage) {
         this._getlockoutMessage().should('be.visible').and('contain', lockoutMessage);
     }
 
-        verifyLockedAccount(lockedAccount) {
+    verifyLockedAccount(lockedAccount) {
         // Bu metod, lockout durumunu doğrulamak için backend API'sine istek atabilir veya UI'da belirli bir elementin görünürlüğünü kontrol edebilir.
         // Örneğin, lockout durumunu doğrulamak için API çağrısı yapabiliriz:
         cy.intercept('POST', '/api/login', {
@@ -138,7 +136,8 @@ class LoginPage {
         }).as('lockoutResponse');
     }
 
-        clickLink(linkName) {
+    //TC05 Assertions
+    clickLink(linkName) {
         cy.contains(linkName).should('be.visible').click();
     }
 
@@ -146,7 +145,7 @@ class LoginPage {
         cy.url().should('include', '/uye-sifre-hatirlat');
     }
 
-     verifyCTAtext(ctaText) {
+    verifyCTAtext(ctaText) {
         cy.contains(ctaText).should('be.visible');
     }
 }

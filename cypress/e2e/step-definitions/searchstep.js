@@ -10,10 +10,10 @@ Given("I am on the Kitapsepeti {string} as a logged-in user", (pageName) => {
   loginPage.visit("homepage");
   loginPage.openLoginPopup();
   loginPage.fillValidCredentials();
-  loginPage.submit();
+  loginPage.clickLoginButton();
   loginPage.verifyLoggedIn();
 
-  searchPage.verifySearchInput(); 
+ //searchPage.verifySearchInput(); 
 });
 
 // ==========================================
@@ -21,11 +21,13 @@ Given("I am on the Kitapsepeti {string} as a logged-in user", (pageName) => {
 // ==========================================
 
 When("I enter {string} into the search bar", (keyword) => {
+  searchPage.verifySearchInput();
   searchPage.fillSearchInput(keyword);
 });
 
 When("I click the search button", () => {
   searchPage.submitSearch();
+  loginPage.verifyLoggedIn();
 });
 
 Then("I should be redirected to the {string} page and see related products listed", (pagePath) => {
@@ -88,7 +90,7 @@ Then("the product list should be updated according to the selected filters", () 
 });
 
 // ==========================================
-// TC10 STEP DEFINITIONS (DÜZELTİLDİ)
+// TC10 STEP DEFINITIONS 
 // ==========================================
 
 When("I click on a category from the top navigation on the homepage", () => {

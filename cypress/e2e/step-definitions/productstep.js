@@ -65,7 +65,9 @@ Then("an success message popup stating \"Ürün başarıyla sepete eklendi\" sho
 });
 
 Then("the popup should contain \"Sepete Git\" and \"Satın Al\" buttons", () => {
-  productPage.clickGoToCartButton(); // Test akışına göre tıklama veya görünürlük doğrulaması
+  productPage.clickGoToCartButton();
+  
+   // Test akışına göre tıklama veya görünürlük doğrulaması
 });
 
 Then("the product count on the cart icon at the top right corner of the site should increase by {string}", (countStr) => {

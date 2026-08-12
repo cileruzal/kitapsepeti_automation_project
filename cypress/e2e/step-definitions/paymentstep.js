@@ -11,14 +11,11 @@ import paymentPage from "../../pages/PaymentPage";
 // ==========================================
 
 Given("I am on the cart page and clicks the {string} button to be redirected to the {string} page" ,() => {
-
-
-cartPage.navigateToCart();  // search.step deki Given kısmını karşılıyor. user login yapıyor.
-cy.loginViaApi();
-cartPage.addProductAndGoToCartDirectly();
-cartPage.clickPopupGoToCartButton();
-paymentPage.clickBuyButton();
-paymentPage.displayAdress();
+    cartPage.navigateToCart();  // search.step deki Given kısmını karşılıyor. user login yapıyor.
+    cartPage.addProductAndGoToCartDirectly();
+    cartPage.clickPopupGoToCartButton();
+    paymentPage.clickBuyButton();
+    paymentPage.displayAdress();
 
 })
 
@@ -93,5 +90,6 @@ Then("A red warning message stating {string} should be displayed under the text 
 
 Then("A final {string} box should be located on the right side of the page showing the correct grand total amount",()=> {
     paymentPage.verifyOrderSummary()
+    paymentPage.verifyOrderSummaryTotal()
 });
 

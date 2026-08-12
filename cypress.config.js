@@ -30,7 +30,7 @@ module.exports = defineConfig({
     // Step definitions yollarını buraya plugin'e tanıtıyoruz:
     await addCucumberPreprocessorPlugin(on, config, {
     stepDefinitions: "cypress/e2e/step-definitions/**/*.{js,ts}"
-  });
+    });
 
     require('cypress-mochawesome-reporter/plugin')(on);
 
@@ -52,6 +52,6 @@ module.exports = defineConfig({
     }));
 
     return config;
-  },
+  },  
   },
 });

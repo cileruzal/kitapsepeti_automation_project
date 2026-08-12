@@ -44,26 +44,31 @@
 //    });
 //});
 
-Cypress.Commands.add("loginViaApi", () => {
-    cy.session("userSession", () => {
-        cy.request({
-            method: "POST",
-            url: "https://www.kitapsepeti.com/api/v1/authentication/login/?language=tr",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: {
-                email: Cypress.env("VALID_EMAIL"),     
-                password: Cypress.env("VALID_PASSWORD"),
-                rememberMe: 0,
-            },
-            failOnStatusCode: false,
-        }).then((response) => {
-            // Status kodunu konsola yazdırarak dönen hatayı net görebilirsiniz
-            cy.log(JSON.stringify(response.body));
-            expect(response.status).to.eq(200);
-        });
-    });
-});
+//Cypress.Commands.add("loginViaApi", () => {
+  //  cy.session("userSession", () => {
+    //    cy.request({
+      //      method: "POST",
+        //    url: "https://www.kitapsepeti.com/api/v1/authentication/login/?language=tr",
+          //  headers: {
+    //            "Content-Type": "application/json",
+      //          "Accept": "application/json"
+        //    },
+       //     body: {
+         //       email: Cypress.env("VALID_EMAIL"),     
+          //      password: Cypress.env("VALID_PASSWORD"),
+           //     rememberMe: 0,
+   //         },
+   //         failOnStatusCode: false,
+  //      }).then((response) => {
+   //         // Status kodunu konsola yazdırarak dönen hatayı net görebilirsiniz
+   //         cy.log(JSON.stringify(response.body));
+  //          expect(response.status).to.eq(200);
+   //     });
+  //  });
+//});
+// cypress/support/e2e.js dosyasının içine doğrudan ekleyebilirsin:
 
+beforeEach(() => {
+    cy.clearLocalStorage();
+    cy.clearCookies();
+});

@@ -36,11 +36,13 @@ When("I enter valid email and password in the login popup", () => {
 });
 
 When("I click the {string} button", (buttonText) => {
-    if (buttonText === "Giriş Yap") {
-        loginPage.submit();
-    } else {
-        loginPage.clickLink(buttonText);
-    } 
+    loginPage.clickLoginButton(buttonText)
+    
+ //   if (buttonText === "Giriş Yap") {
+ //       loginPage.clickLoginButton();
+ //   } else {
+ //     loginPage.clickLink(buttonText);
+ //  } 
 });
 
 
@@ -66,7 +68,7 @@ When("I leave email and password fields empty", () => {
     loginPage.fillCredentials("", "");
 });
 
-Then("I should see the error message {string}", (errorMessage) => {
+Then("I should see the {string}", (errorMessage) => {
     // Sondaki fazlalık zinciri kaldırdık, doğrulama page içinde yapılıyor
     loginPage.verifyErrorMessage(errorMessage);
 });
@@ -104,7 +106,7 @@ When("I click on the login icon in the header", () => {
     loginPage.openLoginPopup();
 });
 
-When("I click on the {string} link", (linkName) => {
+Then("I click on the {string} link", (linkName) => {
     loginPage.clickLink(linkName);
 });
 

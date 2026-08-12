@@ -36,7 +36,7 @@ Feature: US02 - Search&Listing
     @TC09 @AC6 @AC7 @Functional @Regression
   Scenario: TC09_Catalog-Management: Sorting and Filtering Logic
     # Validate sorting menu options and functional filtering accuracy.
-    When I perform a search for "philosophy"
+    When I perform a search for "history"
     And I click on the "Sıralama" dropdown menu at the top right
     Then I should see "Varsayılan Sıralama", "Yeniden Eskiye", "Eskiden Yeniye", "Fiyat Artan" and "Fiyat Azalan" options in the menu
     When I apply filters for "Kategoriler", "Marka" and "Model" from the left filter panel
