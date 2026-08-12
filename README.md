@@ -25,7 +25,7 @@ The primary goal of this project is to ensure the stability, reliability, and se
 * **CI/CD Integration:** GitHub Actions
 * **Reporting:** Mochawesome (Comprehensive HTML reports)
 
-👉 [Mochawesome HTML Raporunu Canlı Görüntüle](https://htmlpreview.github.io/?https://github.com/cileruzal/kitapsepeti_automation_project/blob/main/cypress/reports/index.html)
+👉 [Mochawesome HTML Report](https://htmlpreview.github.io/?https://github.com/cileruzal/kitapsepeti_automation_project/blob/main/cypress/reports/index.html)
 ---
 
 ## 📁 Project Structure
