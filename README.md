@@ -31,7 +31,7 @@ The primary goal of this project is to ensure the stability, reliability, and se
 ## 📁 Project Structure
 
 ```text
-KITAPSEPETI_OTOMASYON/
+KITAPSEPETI_AUTOMATION_PROJECT/
 ├── cypress/
 │   ├── downloads/              # Downloaded artifacts
 │   ├── e2e/                    # Gherkin feature files and step definitions
