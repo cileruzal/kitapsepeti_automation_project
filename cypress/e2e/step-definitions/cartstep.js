@@ -65,7 +65,8 @@ When("I increase the quantity of a product in the cart by clicking the {string} 
 });
 
 Then("the total price for the product and the {string} should be updated accurately according to the new quantity", () => {
-    cartPage.verifyQuantity()
+    cartPage.verifyQuantity();
+    cartPage.verifyGeneralTotal();
 });
 
 

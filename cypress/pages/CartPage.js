@@ -120,12 +120,6 @@ clearCartViaButton() {
     // Silme işleminden sonra DOM'un yüklenmesi için küçük bir bekleme veya görünürlük garantisi
     cy.wait(1000); // Alternatif olarak API response 
   }
-
-  //deleteProductViaTrashIcon() {
-    //this._getDeleteProductButton().first().click();
-    //this._getDeleteModalWindow().should('be.visible');
-    //this._getDeleteConfirmButton().click();
-  //} 
   
 
 verifyEmptyCartState() {

@@ -129,7 +129,6 @@ class LoginPage {
 
     verifyLockedAccount(lockedAccount) {
         // Bu metod, lockout durumunu doğrulamak için backend API'sine istek atabilir veya UI'da belirli bir elementin görünürlüğünü kontrol edebilir.
-        // Örneğin, lockout durumunu doğrulamak için API çağrısı yapabiliriz:
         cy.intercept('POST', '/api/login', {
             statusCode: 429, // Too Many Requests
             body: { message: "Çok fazla istek talebinde bulundunuz. Lütfen 30 dakika sonra tekrar deneyin." }

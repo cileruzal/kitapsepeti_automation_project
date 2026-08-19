@@ -73,4 +73,5 @@ Then("the popup should contain \"Sepete Git\" and \"Satın Al\" buttons", () => 
 Then("the product count on the cart icon at the top right corner of the site should increase by {string}", (countStr) => {
   const expectedCount = parseInt(countStr, 10);
   productPage.verifyCartIconCount(expectedCount);
+  productPage.verifyQuantity();
 });
