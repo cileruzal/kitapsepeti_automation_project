@@ -25,14 +25,13 @@ The primary goal of this project is to ensure the stability, reliability, and se
 * **CI/CD Integration:** GitHub Actions
 * **Reporting:** Mochawesome (Comprehensive HTML reports)
 
-You can view the live Mochawesome HTML test execution report via the link below:
-👉 [Mochawesome Report](https://github.com/cileruzal/kitapsepeti_automation_project>/cypress/reports/index_001.html)
+👉 [Mochawesome HTML Report](https://htmlpreview.github.io/?https://github.com/cileruzal/kitapsepeti_automation_project/blob/main/cypress/reports/index.html)
 ---
 
 ## 📁 Project Structure
 
 ```text
-KITAPSEPETI_OTOMASYON/
+KITAPSEPETI_AUTOMATION_PROJECT/
 ├── cypress/
 │   ├── downloads/              # Downloaded artifacts
 │   ├── e2e/                    # Gherkin feature files and step definitions
